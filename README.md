@@ -2,7 +2,7 @@
 Penyelesaian Persamaan Non Linier dengan Metode Regula Biseksi yang di implementasikan menggunakan code python.
 
 Anggota 
-- Shaldi Sauqi 
+- Shaldi Shauqi (2308107010023)
 - Rezza Ramadhana
 - Mulia Andiki
 - Ikram Ramadhana
