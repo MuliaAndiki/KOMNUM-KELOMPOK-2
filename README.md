@@ -9,6 +9,6 @@ Anggota
 >>>>>>> f2c966b58302ad24f4efb71d13f53a096235ead0
 - Rezza Ramadhana
 - Mulia Andiki     (2308107010013)
-- Ikram Ramadhana
+- Ikram Ramadhana  (2308107010055)
 - Dian Nazira
 - Dwi fitria windy
