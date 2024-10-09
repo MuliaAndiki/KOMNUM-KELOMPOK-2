@@ -11,4 +11,4 @@ Anggota
 - Mulia Andiki     (2308107010013)
 - Ikram Ramadhana  (2308107010055)
 - Dian Nazira (2308107010011)
-- Dwi fitria windy
+- Dwi fitria windy (2308107010017)
