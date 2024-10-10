@@ -1,5 +1,5 @@
 # KOMNUM-KELOMPOK-2
-Penyelesaian Persamaan Non Linier dengan Metode Regula Biseksi yang di implementasikan menggunakan code python.
+Penyelesaian Persamaan Non Linier dengan Metode Biseksi yang di implementasikan menggunakan code python.
 
 Anggota 
 - Shaldi Sauqi     (2308107010023)
