@@ -9,9 +9,9 @@ def show_loading_animation(message):
     loading_window = tk.Toplevel()  
     loading_window.title("Loading")
     loading_window.geometry("500x150")  
-    loading_window.configure(bg="white")
+    loading_window.configure(bg="#F0F8FF")  # Warna cerah
     
-    loading_label = tk.Label(loading_window, text=message, font=("Arial", 20), bg="white")
+    loading_label = tk.Label(loading_window, text=message, font=("Arial", 20, "bold"), bg="#F0F8FF", fg="#FF6347")  
     loading_label.pack(pady=20)
 
     # Animasi progress bar
@@ -80,7 +80,7 @@ def plot_graph(f):
     x = np.linspace(-10, 10, 400)  
     plt.figure(figsize=(8, 6))
     plt.plot(x, f(x), label='f(x)', color='blue')
-    plt.axhline(y=0, color='r', linestyle='--', label='y=0')
+    plt.axhline(y=0, color='red', linestyle='--', label='y=0')
     plt.xlabel('x')
     plt.ylabel('f(x)')
     plt.title('Graph of f(x)')
@@ -97,7 +97,7 @@ def run_bisection():
     max_iter = int(iter_entry.get())
     
     # Tampilkan animasi loading saat proses dengan pesan "Membuat tabel"
-    show_loading_animation("Create Table") 
+    show_loading_animation("Sedang Membuat Tabel") 
     
     results = bisection_method(f, a, b, tol, max_iter)
     
@@ -110,37 +110,38 @@ def run_bisection():
 # Setup UI menggunakan Tkinter
 root = tk.Tk()
 root.title("Metode Bisection JEAY")
+root.configure(bg="#F0F8FF")  # Warna cerah
 
 # Variabel untuk input fungsi
 user_input_var = tk.StringVar()
 
 # Frame untuk input dan kontrol
-input_frame = tk.Frame(root)
+input_frame = tk.Frame(root, bg="#F0F8FF")  # Warna cerah
 input_frame.pack(side=tk.LEFT, padx=10, pady=10)
 
 # Label dan Entry untuk input fungsi
-tk.Label(input_frame, text="Masukkan fungsi f(x):").pack(pady=5)
+tk.Label(input_frame, text="Masukkan fungsi f(x):", bg="#F0F8FF", fg="#FF6347", font=("Arial", 12, "bold")).pack(pady=5)  # Warna cerah dan bold
 tk.Entry(input_frame, textvariable=user_input_var).pack(pady=5)
 
 # Label dan Entry untuk parameter a, b, tol, dan iterasi maksimum
-tk.Label(input_frame, text="Masukkan nilai a (batas bawah):").pack(pady=5)
+tk.Label(input_frame, text="Masukkan nilai a (batas bawah):", bg="#F0F8FF", fg="#FF6347", font=("Arial", 12, "bold")).pack(pady=5)
 a_entry = tk.Entry(input_frame)
 a_entry.pack(pady=5)
 
-tk.Label(input_frame, text="Masukkan nilai b (batas atas):").pack(pady=5)
+tk.Label(input_frame, text="Masukkan nilai b (batas atas):", bg="#F0F8FF", fg="#FF6347", font=("Arial", 12, "bold")).pack(pady=5)
 b_entry = tk.Entry(input_frame)
 b_entry.pack(pady=5)
 
-tk.Label(input_frame, text="Masukkan nilai toleransi (tol):").pack(pady=5)
+tk.Label(input_frame, text="Masukkan nilai toleransi (tol):", bg="#F0F8FF", fg="#FF6347", font=("Arial", 12, "bold")).pack(pady=5)
 tol_entry = tk.Entry(input_frame)
 tol_entry.pack(pady=5)
 
-tk.Label(input_frame, text="Masukkan nilai maksimum iterasi:").pack(pady=5)
+tk.Label(input_frame, text="Masukkan nilai maksimum iterasi:", bg="#F0F8FF", fg="#FF6347", font=("Arial", 12, "bold")).pack(pady=5)
 iter_entry = tk.Entry(input_frame)
 iter_entry.pack(pady=5)
 
 # Tombol untuk menjalankan metode bisection
-tk.Button(input_frame, text="Jalankan Metode Bisection", command=run_bisection).pack(pady=10)
+tk.Button(input_frame, text="Jalankan Metode Bisection", command=run_bisection, bg="#FF6347", fg="#FFFFFF", font=("Arial", 12, "bold")).pack(pady=10)  # Warna cerah dan bold
 
 # Treeview untuk menampilkan hasil iterasi dalam bentuk tabel
 columns = ('Iterasi', 'a', 'b', 'F(a)', 'F(b)', 'xr', 'F(xr)', 'F(xr).F(a)', '|b-a|')
@@ -154,7 +155,7 @@ for col in columns:
 for col in columns:
     table.column(col, width=100, anchor='center')
 
-table.pack(pady=20)  # Pastikan ini dipanggil setelah pengaturan kolom
+table.pack(pady=20)
 
 # Menyembunyikan jendela utama sebelum menampilkan animasi
 root.withdraw()
