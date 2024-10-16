@@ -120,7 +120,7 @@ input_frame = tk.Frame(root, bg="#F0F8FF")  # Warna cerah
 input_frame.pack(side=tk.LEFT, padx=10, pady=10)
 
 # Label dan Entry untuk input fungsi
-tk.Label(input_frame, text="Masukkan fungsi f(x):", bg="#F0F8FF", fg="#FF6347", font=("Arial", 12, "bold")).pack(pady=5)  # Warna cerah dan bold
+tk.Label(input_frame, text="Masukkan fungsi f(x):", bg="#F0F8FF", fg="#FF6347", font=("Arial", 12, "bold")).pack(pady=5)  
 tk.Entry(input_frame, textvariable=user_input_var).pack(pady=5)
 
 # Label dan Entry untuk parameter a, b, tol, dan iterasi maksimum
@@ -141,7 +141,7 @@ iter_entry = tk.Entry(input_frame)
 iter_entry.pack(pady=5)
 
 # Tombol untuk menjalankan metode bisection
-tk.Button(input_frame, text="Jalankan Metode Bisection", command=run_bisection, bg="#FF6347", fg="#FFFFFF", font=("Arial", 12, "bold")).pack(pady=10)  # Warna cerah dan bold
+tk.Button(input_frame, text="Jalankan Metode Bisection", command=run_bisection, bg="#FF6347", fg="#FFFFFF", font=("Arial", 12, "bold")).pack(pady=10)  
 
 # Treeview untuk menampilkan hasil iterasi dalam bentuk tabel
 columns = ('Iterasi', 'a', 'b', 'F(a)', 'F(b)', 'xr', 'F(xr)', 'F(xr).F(a)', '|b-a|')
