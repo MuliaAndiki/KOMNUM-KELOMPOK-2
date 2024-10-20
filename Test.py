@@ -141,11 +141,19 @@ def plot_graph(f):
 st.markdown("<h1 style='color: white; font-weight: bold;'>Metode Bisection - Kelompok 2</h1>", unsafe_allow_html=True)
 
 # Input pengguna
-user_input = st.text_input("Masukkan fungsi f(x):", "x**2 - 4*x + 3")
-a = st.number_input("Masukkan nilai a (batas bawah):", value=-2.0)
-b = st.number_input("Masukkan nilai b (batas atas):", value=5.0)
-tol = st.number_input("Masukkan nilai toleransi (tol):", value=1e-5)
+user_input = st.text_input("Masukkan fungsi f(x):")
+a = st.number_input("Masukkan nilai a (batas bawah):")
+b = st.number_input("Masukkan nilai b (batas atas):")
+tol = st.number_input("Masukkan nilai toleransi (tol):")
 max_iter = st.number_input("Masukkan nilai maksimum iterasi:", value=100)
+
+if st.button ("Tampilkan plot graph"):
+    f = input_function(user_input)  # Konversi input fungsi
+
+    # Tampilkan grafik fungsi f(x)
+    plot_graph(f)
+    with st.spinner('Sedang memproses...'):
+        time.sleep(1)  # Simulasi loading
 
 if st.button("Jalankan Metode Bisection"):
     f = input_function(user_input)  # Konversi input fungsi
