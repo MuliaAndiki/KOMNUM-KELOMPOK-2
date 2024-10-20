@@ -65,11 +65,32 @@ add_bg_from_local(bg_image)
 
 # Fungsi input manual untuk definisi fungsi
 def input_function(user_input):
-    user_input = user_input.replace('x', '*x').replace('^', '**')
-    user_input = user_input.replace('e', 'np.exp(1)').replace('sin(x)', 'np.sin(x)')
-    user_input = user_input.lstrip('*')
+    # Mengganti ekspresi eksponensial
+    user_input = user_input.replace('e', 'np.exp(1)')
+
+    # Mengganti operator pangkat (^)
+    user_input = user_input.replace('^', '**')
     
-    return user_input
+    # Mengganti fungsi trigonometri
+    user_input = user_input.replace('sin', 'np.sin')
+    user_input = user_input.replace('cos', 'np.cos')
+    user_input = user_input.replace('tan', 'np.tan')
+
+    # Mengganti ekspresi nilai x
+    user_input = user_input.replace('x', '*x')
+
+    # Menghapus tanda * jika x berada di depan e^, sin, cos, tan
+    for func in ['np.e','xp(1)**', 'np.sin(', 'np.cos(', 'np.tan(', '-', '- ']:
+        user_input = user_input.replace(func + '*' , func)
+        
+    # Menghapus tanda * jika x berada di awal
+    user_input = user_input.lstrip('*') 
+
+    # Buat fungsi dari string
+    def f(x):
+        return eval(user_input)
+    
+    return f
 
 # Metode Bisection
 def bisection_method(f, a, b, tol, max_iter):
@@ -132,7 +153,7 @@ if st.button("Jalankan Metode Bisection"):
         time.sleep(1)  # Simulasi loading
 
     # Dapatkan hasil iterasi dari metode Bisection
-    results = bisection_method(user_input, a, b, tol, max_iter)
+    results = bisection_method(f, a, b, tol, max_iter)
     
     # Ubah hasil iterasi menjadi DataFrame agar mudah ditampilkan dalam tabel
     results_df = pd.DataFrame(results)
