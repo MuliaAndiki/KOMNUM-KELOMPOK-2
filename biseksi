@@ -6,12 +6,12 @@ import time
 import base64
 
 # Fungsi untuk menambahkan gambar latar belakang dari file lokal
-def add_bg_from_local(image_file):
+def tambahBackground(file_gambar):
     st.markdown(
         f"""
         <style>
         .stApp {{
-            background-image: url(data:image/png;base64,{image_file});
+            background-image: url(data:image/png;base64,{file_gambar});
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -49,34 +49,31 @@ def add_bg_from_local(image_file):
     )
 
 # Membaca gambar latar belakang dari file lokal
-def load_background_image(image_path):
+def tampilanLoadingBackground(image_path):
     with open(image_path, "rb") as f:
         data = f.read()
     return base64.b64encode(data).decode()  # Encode ke base64
 
 # Path file gambar latar belakang
-bg_image_path = "iofi1.png"  # Pastikan file ini ada di folder yang sama
-
+path_gambar_latar = "background.png"  # Pastikan file ini ada di folder yang sama
 # Memuat gambar latar belakang
-bg_image = load_background_image(bg_image_path)
-
+gambar_latar = tampilanLoadingBackground(path_gambar_latar)
 # Menambahkan gambar latar belakang
-add_bg_from_local(bg_image)
+tambahBackground(gambar_latar)
 
 # Fungsi input manual untuk definisi fungsi
-def input_function(user_input):
-    return eval("lambda x: " + user_input)
+def inputFungsi(input_pengguna):
+    return eval("lambda x: " + input_pengguna)
 
 # Metode Bisection
-def bisection_method(f, a, b, tol, max_iter):
-    iterations = []
-    for n in range(1, max_iter + 1):
+def metodeBiseksi(f, a, b, toleransi, maks_iterasi):
+    iterasi_list = []
+    for n in range(1, maks_iterasi + 1):
         xr = (a + b) / 2
         f_a = f(a)
         f_b = f(b)
         f_xr = f(xr)
-
-        iteration = {
+        iterasi = {
             'Iterasi': n,
             'a': a,
             'b': b,
@@ -87,27 +84,24 @@ def bisection_method(f, a, b, tol, max_iter):
             'F(xr)*F(a)': f_xr * f_a,
             '|b-a|': abs(b - a)
         }
-        iterations.append(iteration)
-
-        if abs(f_xr) < tol:
+        iterasi_list.append(iterasi)
+        if abs(f_xr) < toleransi:
             break
-
         if f_xr * f_a < 0:
             b = xr
         else:
             a = xr
-
-    return iterations
+    return iterasi_list
 
 # Fungsi untuk menampilkan grafik
-def plot_graph(f):
-    x = np.linspace(-10, 10, 400)  
+def tampilanGrafik(f):
+    x = np.linspace(-10, 10, 400)
     plt.figure(figsize=(8, 6))
     plt.plot(x, f(x), label='f(x)', color='#D81B60')  # Warna grafik
     plt.axhline(y=0, color='red', linestyle='--', label='y=0')
     plt.xlabel('x', color='white')  # Warna label sumbu x
     plt.ylabel('f(x)', color='white')  # Warna label sumbu y
-    plt.title('Graph of f(x)', color='white')  # Warna judul grafik
+    plt.title('Grafik dari f(x)', color='white')  # Warna judul grafik
     plt.grid(True)
     plt.legend()
     st.pyplot(plt)
@@ -116,29 +110,25 @@ def plot_graph(f):
 st.markdown("<h1 style='color: white; font-weight: bold;'>Metode Bisection - Kelompok 2</h1>", unsafe_allow_html=True)
 
 # Input pengguna
-user_input = st.text_input("Masukkan fungsi f(x):", "x**2 - 4*x + 3")
-a = st.number_input("Masukkan nilai a (batas bawah):", value=-2.0)
-b = st.number_input("Masukkan nilai b (batas atas):", value=5.0)
-tol = st.number_input("Masukkan nilai toleransi (tol):", value=1e-5)
-max_iter = st.number_input("Masukkan nilai maksimum iterasi:", value=100)
+input_pengguna = st.text_input("Masukkan fungsi f(x):", "")
+a = st.number_input("Masukkan nilai a (batas bawah):")
+b = st.number_input("Masukkan nilai b (batas atas):")
+toleransi = st.number_input("Masukkan nilai toleransi (tol):", format="%.10f")
+maks_iterasi = st.number_input("Masukkan nilai maksimum iterasi:", min_value=1, step=1, format="%d")
 
 if st.button("Jalankan Metode Bisection"):
-    f = input_function(user_input)  # Konversi input fungsi
+    f = inputFungsi(input_pengguna)  # Konversi input fungsi
     with st.spinner('Sedang memproses...'):
         time.sleep(1)  # Simulasi loading
-
     # Dapatkan hasil iterasi dari metode Bisection
-    results = bisection_method(f, a, b, tol, max_iter)
-    
+    hasil_iterasi = metodeBiseksi(f, a, b, toleransi, maks_iterasi)
     # Ubah hasil iterasi menjadi DataFrame agar mudah ditampilkan dalam tabel
-    results_df = pd.DataFrame(results)
-    
+    hasil_df = pd.DataFrame(hasil_iterasi)
     # Tampilkan hasil iterasi di luar tabel
-    st.markdown("<h2 style='color: white;'>Hasil Iterasi:</h2>", unsafe_allow_html=True)  # Mengganti warna teks Hasil Iterasi menjadi putih
-    progress_placeholder = st.empty()  # Tempat untuk animasi
-    for index, row in results_df.iterrows():
-        progress_placeholder.table(results_df.iloc[:index + 1])  # Tampilkan tabel hingga baris saat ini
+    st.markdown("<h2 style='color: white;'>Hasil Iterasi:</h2>", unsafe_allow_html=True)
+    tempat_animasi = st.empty()  # Tempat untuk animasi
+    for index, row in hasil_df.iterrows():
+        tempat_animasi.table(hasil_df.iloc[:index + 1])  # Tampilkan tabel hingga baris saat ini
         time.sleep(0.5)  # Jeda untuk efek animasi
-
     # Tampilkan grafik fungsi f(x)
-    plot_graph(f)
+    tampilanGrafik(f)
