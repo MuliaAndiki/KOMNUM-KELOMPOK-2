@@ -13,4 +13,4 @@ def show_result(f, a, b, tol, max_iter):
     
     # Tampilkan hasil akar penyelesaian
     st.markdown(f"<h2 style='color: white;'>Akar Penyelesaian:</h2>", unsafe_allow_html=True)
-    st.markdown(f"<p style='color: white;'>Akar dari persamaan f(x) dalam interval [{a:}, {b:}] adalah: {root}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='color: white;'>Akar dari persamaan f(x) dalam interval [{a:}, {b:}] adalah: {root:.5f}</p>", unsafe_allow_html=True)
