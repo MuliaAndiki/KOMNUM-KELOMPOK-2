@@ -13,11 +13,14 @@ def convert_function(user_input):
     user_input = user_input.replace('cos', 'np.cos')
     user_input = user_input.replace('tan', 'np.tan')
 
+    # Mengganti ekspresi akar
+    user_input = user_input.replace('sqrt', 'np.sqrt')
+
     # Mengganti ekspresi nilai x
     user_input = user_input.replace('x', '*x')
 
     # Menghapus tanda * jika x berada di depan e^, sin, cos, tan, dan -
-    for func in ['np.e','xp(1)**', 'np.sin(', 'np.cos(', 'np.tan(', '-', '- ']:
+    for func in ['np.e','xp(1)**', 'np.sin(', 'np.cos(', 'np.tan(', 'np.sqrt(','-', '- ']:
         user_input = user_input.replace(func + '*' , func)
         
     # Menghapus tanda * jika x berada di awal
