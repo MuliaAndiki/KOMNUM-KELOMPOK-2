@@ -137,6 +137,13 @@ def plot_graph(f):
     plt.legend()
     st.pyplot(plt)
 
+def show_table_with_highlight(df):
+    last_index = df.index[-1]
+    table_html = df.style.apply(
+    lambda x: ['background-color: green' if x.name == last_index else '' for i in x], axis=1
+    ).render()
+    st.markdown(table_html, unsafe_allow_html=True)
+
 # Bagian aplikasi Streamlit
 st.markdown("<h1 style='color: white; font-weight: bold;'>Metode Bisection - Kelompok 2</h1>", unsafe_allow_html=True)
 
@@ -172,6 +179,10 @@ if st.button("Jalankan Metode Bisection"):
     for index, row in results_df.iterrows():
         progress_placeholder.table(results_df.iloc[:index + 1])  # Tampilkan tabel hingga baris saat ini
         time.sleep(0.5)  # Jeda untuk efek animasi
+        # Fungsi untuk menampilkan tabel dengan highlight pada baris terakhir
+
+    show_table_with_highlight(results_df)
+        
 
     # Tampilkan grafik fungsi f(x)
     plot_graph(f)

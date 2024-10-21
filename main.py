@@ -9,7 +9,7 @@ from result import show_result
 from plot import plot_graph
 
 # Path file gambar latar belakang
-bg_image_path = "iofi.png"  # Pastikan file ini ada di folder yang sama
+bg_image_path = "background.png"  # Pastikan file ini ada di folder yang sama
 
 # Memuat gambar latar belakang
 bg_image = load_background_image(bg_image_path)
@@ -29,11 +29,11 @@ max_iter = st.number_input("Masukkan nilai maksimum iterasi:", value=0)
 
 if st.button ("Tampilkan plot graph"):
     f = convert_function(user_input)  # Konversi input fungsi
+    with st.spinner('Sedang memproses...'):
+        time.sleep(1)  # Simulasi loading
 
     # Tampilkan grafik fungsi f(x)
     plot_graph(f)
-    with st.spinner('Sedang memproses...'):
-        time.sleep(1)  # Simulasi loading
 
 if st.button("Jalankan Metode Bisection"):
     f = convert_function(user_input)  # Konversi input fungsi

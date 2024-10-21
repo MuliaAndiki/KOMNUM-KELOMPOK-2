@@ -20,7 +20,7 @@ def convert_function(user_input):
     user_input = user_input.replace('x', '*x')
 
     # Menghapus tanda * jika x berada di depan e^, sin, cos, tan, dan -
-    for func in ['np.e','xp(1)**', 'np.sin(', 'np.cos(', 'np.tan(', 'np.sqrt(','-', '- ']:
+    for func in ['np.e','xp(1)**', 'np.sin(', 'np.cos(', 'np.tan(', 'np.sqrt(', '-', '- ']:
         user_input = user_input.replace(func + '*' , func)
         
     # Menghapus tanda * jika x berada di awal
