@@ -64,7 +64,7 @@ bg_image = load_background_image(bg_image_path)
 add_bg_from_local(bg_image)
 
 # Fungsi input manual untuk definisi fungsi
-def input_function(user_input):
+def convert_function(user_input):
     # Mengganti ekspresi eksponensial
     user_input = user_input.replace('e', 'np.exp(1)')
 
@@ -114,7 +114,7 @@ def bisection_method(f, a, b, tol, max_iter):
         }
         iterations.append(iteration)
 
-        if abs(f_xr) < tol:
+        if abs(b - a) < tol:
             break
 
         if f_xr * f_a < 0:
@@ -148,7 +148,7 @@ tol = st.number_input("Masukkan nilai toleransi (tol):")
 max_iter = st.number_input("Masukkan nilai maksimum iterasi:", value=100)
 
 if st.button ("Tampilkan plot graph"):
-    f = input_function(user_input)  # Konversi input fungsi
+    f = convert_function(user_input)  # Konversi input fungsi
 
     # Tampilkan grafik fungsi f(x)
     plot_graph(f)
@@ -156,7 +156,7 @@ if st.button ("Tampilkan plot graph"):
         time.sleep(1)  # Simulasi loading
 
 if st.button("Jalankan Metode Bisection"):
-    f = input_function(user_input)  # Konversi input fungsi
+    f = convert_function(user_input)  # Konversi input fungsi
     with st.spinner('Sedang memproses...'):
         time.sleep(1)  # Simulasi loading
 
