@@ -6,7 +6,6 @@ from tambahBackground import load_background_image
 from convert import convert_function
 from bisection import bisection_method
 from plot import plot_graph
-from warna import highlight_xr  # Import highlight_xr dari warna.py
 from animasi import display_animated_table  # Pastikan ini diimpor jika animasi ada di file terpisah
 
 # Path file gambar latar belakang
